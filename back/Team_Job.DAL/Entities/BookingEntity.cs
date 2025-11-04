@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Team_Job.DAL.Entities
 {
-    public class BookingEntity
+    public class BookingEntity : BaseEntity
     {
-        public int Id { get; set; }
-        public int HouseId { get; set; }
-        public HouseEntity? House { get; set; }
-        public int UserId { get; set; }
-        public UserEntity? User { get; set; }
+        
+        public required string HouseId { get; set; }
+        public required HouseEntity House { get; set; }
+        public required string UserId { get; set; }
+        public required UserEntity User { get; set; }
 
-        public DateTime StartDate { get; set; }
+        
         public DateTime EndDate { get; set; }
         public decimal TotalPrice { get; set; }
     }
