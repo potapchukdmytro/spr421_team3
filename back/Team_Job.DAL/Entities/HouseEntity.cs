@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace Team_Job.DAL.Entities
 {
-    public class HouseEntity
+    public class HouseEntity : BaseEntity
     {
-        public int HouseId { get; set; }
-        public string Address { get; set; }
+        
+        public required string Address { get; set; }
         public int AmountOfRooms { get; set; }
         public decimal PricePerNight { get; set; }
         public bool IsAvialable { get; set; }
         public List<BookingEntity>? Bookings { get; set; }
+
+        public required UserEntity? Owner { get; set; }
+
+        public required string OwnerId { get; set; }
 
     }
 }

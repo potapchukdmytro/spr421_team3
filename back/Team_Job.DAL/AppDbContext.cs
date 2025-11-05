@@ -25,7 +25,11 @@ namespace Team_Job.DAL
                 .HasOne(b => b.User)
                 .WithMany(u => u.Bookings)
                 .HasForeignKey(b => b.UserId);
-                
+
+           modelBuilder.Entity<HouseEntity>()
+                .HasOne(h => h.Owner)
+                .WithMany(u => u.Houses)
+                .HasForeignKey(h => h.OwnerId);
         }
     }
 }
