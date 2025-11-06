@@ -11,6 +11,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultDb"));
 });
+
+// Add automapper
+builder.Services.AddAutoMapper(options =>
+{
+    options.LicenseKey = builder.Configuration["Automapper:LicenseKey"];
+}, AppDomain.CurrentDomain.GetAssemblies());
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
