@@ -7,5 +7,11 @@ namespace Team_Job.BLL.Services.House
         Task<ServiceResponse> CreateAsync(CreateHouseDto houseDto);
         Task<ServiceResponse> DeleteAsync(string id);
         Task<ServiceResponse> GetAllAsync();
+
+        Task<ServiceResponse> GetByIdAsync(string id);
+
+        Task<ServiceResponse> GetByNameAsync(string name);
+
+        Task<ServiceResponse> UpdateAsync(UpdateHouseDto houseDto);
     }
 }

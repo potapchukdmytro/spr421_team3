@@ -80,5 +80,20 @@ namespace Team_Job.BLL.Services.House
                 Payload = dtos
             };
         }
+
+        public Task<ServiceResponse> GetByIdAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ServiceResponse> GetByNameAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ServiceResponse> UpdateAsync(UpdateHouseDto houseDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
