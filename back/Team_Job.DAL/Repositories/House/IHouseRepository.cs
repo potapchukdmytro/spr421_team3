@@ -10,5 +10,8 @@ namespace Team_Job.DAL.Repositories.House
         IQueryable<HouseEntity>? GetByAddress(string adress);
 
         IQueryable<HouseEntity>? GetByHouseUser(string Gmail);
+
+        Task<IEnumerable<HouseEntity>> GetAvailableHousesAsync();
+
     }
 }

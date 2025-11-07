@@ -13,5 +13,7 @@ namespace Team_Job.BLL.Services.House
         Task<ServiceResponse> GetByNameAsync(string name);
 
         Task<ServiceResponse> UpdateAsync(UpdateHouseDto houseDto);
+
+        Task<ServiceResponse> GetAvailableAsync();
     }
 }

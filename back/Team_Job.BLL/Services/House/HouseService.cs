@@ -133,7 +133,7 @@ namespace Team_Job.BLL.Services.House
 
             if (entity == null)
             {
-               return  new ServiceResponse
+                return new ServiceResponse
                 {
                     IsSuccess = false,
                     StatusCode = HttpStatusCode.NotFound,
@@ -141,12 +141,42 @@ namespace Team_Job.BLL.Services.House
                 };
             }
 
-            var dto = _mapper.Map<UpdateHouseDto>(entity);
+            entity.Address = houseDto.Address;
+            entity.AmountOfRooms = houseDto.AmountOfRooms;
+            entity.PricePerNight = houseDto.PricePerNight;
+            entity.IsAvialable = houseDto.IsAvialable;
+            entity.OwnerId = houseDto.OwnerId;
+
+            await _houseRepository.UpdateAsync(entity);
 
             return new ServiceResponse
             {
-                Message = $"Будинок по адресі'{houseDto.Address}' оновлено"
+                Message = $"Будинок по адресі '{houseDto.Address}' оновлено",
+                Payload = _mapper.Map<HouseDto>(entity)
             };
         }
+
+
+
+
+        public async Task<ServiceResponse> GetAvailableAsync()
+        {
+            var houses = await _houseRepository.GetAvailableHousesAsync();
+            var dtos = _mapper.Map<List<HouseDto>>(houses);
+
+            return new ServiceResponse
+            {
+                Message = "Доступні будинки",
+                Payload = dtos
+            };
+        }
+
+
+
+
+
+
+
+
     }
 }

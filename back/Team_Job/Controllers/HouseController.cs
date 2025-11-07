@@ -52,6 +52,15 @@ namespace Team_Job.Controllers
             return this.ToActionResult(response);
         }
 
+
+        [HttpGet("available")]
+        public async Task<IActionResult> GetAvailableAsync()
+        {
+            var response = await _HouseServices.GetAvailableAsync();
+            return this.ToActionResult(response);
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
