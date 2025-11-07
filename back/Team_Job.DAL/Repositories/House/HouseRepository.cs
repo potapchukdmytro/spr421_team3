@@ -27,5 +27,15 @@ namespace Team_Job.DAL.Repositories.House
         }
 
 
+        public async Task<IEnumerable<HouseEntity>> GetAvailableHousesAsync()
+        {
+            return await Houses
+                .Include(h => h.Owner)
+                .Where(h => h.IsAvialable)
+                .ToListAsync();
+        }
+
+
+
     }
 }
