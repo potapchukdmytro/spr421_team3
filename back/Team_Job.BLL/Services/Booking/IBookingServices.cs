@@ -10,7 +10,11 @@ namespace Team_Job.BLL.Services.Booking
 
         Task<ServiceResponse> DeleteBookingAsync(string id);
 
+        Task<ServiceResponse> GetByIdAsync(string id);
+
         Task<ServiceResponse> GetAllAsync();
+
+       
 
 
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Xml.Linq;
 using Team_Job.BLL.Dtos.Booking;
 using Team_Job.DAL.Entities;
 using Team_Job.DAL.Repositories.Booking;
@@ -110,6 +111,31 @@ namespace Team_Job.BLL.Services.Booking
 
         }
 
+        public async Task<ServiceResponse> GetByIdAsync(string id)
+        {
+            var bookings = await _bookingRepository.GetByIdAsync(id);
+            var bookingDtos = _mapper.Map<BookingDto>(bookings);
+            if (bookingDtos == null)
+            {
+                return new ServiceResponse
+                {
+                    IsSuccess = false,
+                    Message = "Бронювань не знайдено",
+                    StatusCode = HttpStatusCode.NotFound
+                };
+            }
+            return new ServiceResponse
+            {
+                Message = "Список всіх бронювань",
+                IsSuccess = true,
+                Payload = bookingDtos,
+                StatusCode = HttpStatusCode.OK
+            };
+
+        }
+
+      
+
         public async Task<ServiceResponse> UpdateBookingAsync(UpdateBookingDto updateBookingDto)
         {
             var booking = await _bookingRepository.GetByIdAsync(updateBookingDto.Id);
@@ -156,6 +182,7 @@ namespace Team_Job.BLL.Services.Booking
                 IsSuccess = true,
                 StatusCode = HttpStatusCode.OK
             };
+
         }
     }
 }

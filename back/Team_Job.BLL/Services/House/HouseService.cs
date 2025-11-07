@@ -81,19 +81,72 @@ namespace Team_Job.BLL.Services.House
             };
         }
 
-        public Task<ServiceResponse> GetByIdAsync(string id)
+        public async Task<ServiceResponse> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+           var house = await _houseRepository.GetByIdAsync(id);
+
+              if (house == null)
+              {
+                return new ServiceResponse
+                {
+                     IsSuccess = false,
+                     StatusCode = HttpStatusCode.NotFound,
+                     Message = $"Будинок з id '{id}' не знайдено"
+                };
+            }
+
+              var houseDto = _mapper.Map<HouseDto>(house);
+                return new ServiceResponse
+                {
+                    Message = $"Будинок з id '{id}'",
+                    Payload = houseDto
+                };
         }
 
-        public Task<ServiceResponse> GetByNameAsync(string name)
+        public async Task<ServiceResponse> GetByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            var houses =   _houseRepository.GetByAddress(name);
+
+            if (houses == null || !houses.Any())
+            {
+                return new ServiceResponse
+                {
+                    IsSuccess = false,
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = $"Будинки з адресою, що містить '{name}', не знайдено"
+                };
+            }
+
+            var houseDtos = _mapper.Map<List<HouseDto>>(houses);
+
+            return new ServiceResponse
+            {
+                Message = $"Будинки з адресою, що містить '{name}'",
+                Payload = houseDtos
+            };
+
         }
 
-        public Task<ServiceResponse> UpdateAsync(UpdateHouseDto houseDto)
+        public async Task<ServiceResponse> UpdateAsync(UpdateHouseDto houseDto)
         {
-            throw new NotImplementedException();
+            var entity = await _houseRepository.GetByIdAsync(houseDto.Id);
+
+            if (entity == null)
+            {
+               return  new ServiceResponse
+                {
+                    IsSuccess = false,
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = $"Будинок з id '{houseDto.Id}' не знайдено"
+                };
+            }
+
+            var dto = _mapper.Map<UpdateHouseDto>(entity);
+
+            return new ServiceResponse
+            {
+                Message = $"Будинок по адресі'{houseDto.Address}' оновлено"
+            };
         }
     }
 }
