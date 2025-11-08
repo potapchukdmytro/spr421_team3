@@ -1,6 +1,10 @@
 
 using Microsoft.EntityFrameworkCore;
+using Team_Job.BLL.Services.House;
 using Team_Job.DAL;
+using Team_Job.DAL.Repositories.Booking;
+using Team_Job.DAL.Repositories.House;
+using Team_Job.DAL.Repositories.User;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +21,14 @@ builder.Services.AddAutoMapper(options =>
 {
     options.LicenseKey = builder.Configuration["Automapper:LicenseKey"];
 }, AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<IHouseRepository, HouseRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+
+builder.Services.AddScoped<IHouseService, HouseService>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
