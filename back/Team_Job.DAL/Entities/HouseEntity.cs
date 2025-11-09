@@ -13,6 +13,8 @@ namespace Team_Job.DAL.Entities
         public int AmountOfRooms { get; set; }
         public decimal PricePerNight { get; set; }
         public bool IsAvialable { get; set; }
+
+        public string? PosterUrl { get; set; }
         public List<BookingEntity>? Bookings { get; set; }
 
         public required UserEntity? Owner { get; set; }

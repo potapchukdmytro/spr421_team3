@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Team_Job.BLL.Services.Storage;
 using System.Net;
 using Team_Job.BLL.Dtos.House;
 using Team_Job.DAL.Entities;
@@ -13,14 +14,15 @@ namespace Team_Job.BLL.Services.House
         private readonly IMapper _mapper;
         private readonly IHouseRepository _houseRepository;
         private readonly IUserRepository _userRepository;
-
-        public HouseService(IMapper mapper, IHouseRepository houseRepository, IUserRepository userRepository)
+        private readonly IStorageService _storageService;
+        public HouseService(IMapper mapper, IHouseRepository houseRepository, IUserRepository userRepository, IStorageService storageService)
         {
             _houseRepository = houseRepository;
             _userRepository = userRepository;
             _mapper = mapper;
+            _storageService = storageService;
         }
-        public async Task<ServiceResponse> CreateAsync(CreateHouseDto houseDto)
+        public async Task<ServiceResponse> CreateAsync(CreateHouseDto houseDto , string posterFilePath)
         {
             var entity = _mapper.Map<HouseEntity>(houseDto);
 
@@ -35,6 +37,20 @@ namespace Team_Job.BLL.Services.House
                 };
             }
 
+            if(houseDto.PosterFile != null) 
+            {
+                var posterFileName = await _storageService.SaveImageFileAsync(houseDto.PosterFile, posterFilePath);
+                if (posterFileName == null)
+                {
+                    return new ServiceResponse
+                    {
+                        IsSuccess = false,
+                        StatusCode = HttpStatusCode.BadRequest,
+                        Message = "Не вдалося зберегти зображення"
+                    };
+                }
+                entity.PosterUrl = posterFileName;
+            }
             entity.Owner = user;
 
             await _houseRepository.CreateAsync(entity);
@@ -59,6 +75,18 @@ namespace Team_Job.BLL.Services.House
             }
 
             await _houseRepository.DeleteAsync(entity);
+
+            var rootPath = Directory.GetCurrentDirectory();
+            var imagesPath = Path.Combine(rootPath, "storage", "images");
+
+            if (!string.IsNullOrEmpty(entity.PosterUrl))
+            {
+                var posterFilePath = Path.Combine(imagesPath, entity.PosterUrl);
+                if (File.Exists(posterFilePath))
+                {
+                    File.Delete(posterFilePath);
+                }
+            }
 
             return new ServiceResponse
             {

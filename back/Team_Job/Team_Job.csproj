@@ -11,12 +11,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Team_Job.BLL\Team_Job.BLL.csproj" />
     <ProjectReference Include="..\Team_Job.DAL\Team_Job.DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="storage\images\" />
   </ItemGroup>
 
 </Project>

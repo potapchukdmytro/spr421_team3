@@ -1,10 +1,12 @@
 
 using Microsoft.EntityFrameworkCore;
 using Team_Job.BLL.Services.House;
+using Team_Job.BLL.Services.Storage;
 using Team_Job.DAL;
 using Team_Job.DAL.Repositories.Booking;
 using Team_Job.DAL.Repositories.House;
 using Team_Job.DAL.Repositories.User;
+using Team_Job.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,6 +28,7 @@ builder.Services.AddScoped<IHouseRepository, HouseRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+builder.Services.AddScoped<IStorageService, StorageService>();
 
 builder.Services.AddScoped<IHouseService, HouseService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
@@ -46,6 +49,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.AddStaticFiles(app.Environment);
 
 app.MapControllers();
 

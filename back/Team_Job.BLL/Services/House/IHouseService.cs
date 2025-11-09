@@ -4,7 +4,7 @@ namespace Team_Job.BLL.Services.House
 {
     public interface IHouseService
     {
-        Task<ServiceResponse> CreateAsync(CreateHouseDto houseDto);
+        Task<ServiceResponse> CreateAsync(CreateHouseDto houseDto, string posterFilePaths);
         Task<ServiceResponse> DeleteAsync(string id);
         Task<ServiceResponse> GetAllAsync();
 
