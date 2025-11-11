@@ -19,6 +19,6 @@ namespace Team_Job.DAL.Entities
 
 
 
-        public  IQueryable<HouseEntity> ?Houses { get; set; }
+        public List<HouseEntity> ?Houses { get; set; }
     }
 }

@@ -1,7 +1,10 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Team_Job.BLL.Services.House;
 using Team_Job.DAL;
+using Team_Job.DAL.Entities.Identity;
+using Team_Job.DAL.Initializer;
 using Team_Job.DAL.Repositories.Booking;
 using Team_Job.DAL.Repositories.House;
 using Team_Job.DAL.Repositories.User;
@@ -15,6 +18,32 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultDb"));
 });
+
+// Add identity
+
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+
+{
+
+    options.User.RequireUniqueEmail = true;
+
+    options.Password.RequiredUniqueChars = 0;
+
+    options.Password.RequireNonAlphanumeric = false;
+
+    options.Password.RequireDigit = false;
+
+    options.Password.RequireLowercase = false;
+
+    options.Password.RequireUppercase = false;
+
+    options.Password.RequiredLength = 6;
+
+})
+
+    .AddDefaultTokenProviders()
+
+    .AddEntityFrameworkStores<AppDbContext>();
 
 // Add automapper
 builder.Services.AddAutoMapper(options =>
@@ -48,5 +77,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Seed();
 
 app.Run();

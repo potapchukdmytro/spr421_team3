@@ -15,6 +15,7 @@ namespace Team_Job.DAL.Entities
         public bool IsAvialable { get; set; }
         public List<BookingEntity>? Bookings { get; set; }
 
+        public string? PosterUrl { get; set; }
         public required UserEntity? Owner { get; set; }
 
         public required string OwnerId { get; set; }
