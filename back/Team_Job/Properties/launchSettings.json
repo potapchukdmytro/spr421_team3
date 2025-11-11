@@ -30,12 +30,21 @@
         }
     },
     "IIS Express": {
+<<<<<<< HEAD
         "commandName": "IISExpress",
         "launchBrowser": true,
         "launchUrl": "swagger",
         "environmentVariables": {
             "ASPNETCORE_ENVIRONMENT": "Development"
         }
+=======
+      "commandName": "IISExpress",
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+>>>>>>> dcf524a (fix problem)
     }
   }
 }
