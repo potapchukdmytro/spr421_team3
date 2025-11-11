@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Team_Job.DAL;
@@ -11,9 +12,11 @@ using Team_Job.DAL;
 namespace Team_Job.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251110225506_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,8 +91,6 @@ namespace Team_Job.DAL.Migrations
                     b.ToTable("Houses");
                 });
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("Team_Job.DAL.Entities.Identity.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
@@ -295,7 +296,6 @@ namespace Team_Job.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
->>>>>>> bc6bb23 (Додано сидер та оновлено сутності)
             modelBuilder.Entity("Team_Job.DAL.Entities.UserEntity", b =>
                 {
                     b.Property<string>("Id")
@@ -359,8 +359,6 @@ namespace Team_Job.DAL.Migrations
                     b.Navigation("Owner");
                 });
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("Team_Job.DAL.Entities.Identity.ApplicationRoleClaim", b =>
                 {
                     b.HasOne("Team_Job.DAL.Entities.Identity.ApplicationRole", "Role")
@@ -424,14 +422,11 @@ namespace Team_Job.DAL.Migrations
                     b.Navigation("User");
                 });
 
->>>>>>> bc6bb23 (Додано сидер та оновлено сутності)
             modelBuilder.Entity("Team_Job.DAL.Entities.HouseEntity", b =>
                 {
                     b.Navigation("Bookings");
                 });
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("Team_Job.DAL.Entities.Identity.ApplicationRole", b =>
                 {
                     b.Navigation("RoleClaims");
@@ -450,7 +445,6 @@ namespace Team_Job.DAL.Migrations
                     b.Navigation("UserRoles");
                 });
 
->>>>>>> bc6bb23 (Додано сидер та оновлено сутності)
             modelBuilder.Entity("Team_Job.DAL.Entities.UserEntity", b =>
                 {
                     b.Navigation("Bookings");
