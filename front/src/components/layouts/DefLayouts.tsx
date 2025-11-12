@@ -7,7 +7,7 @@ const DefLayouts = () =>
             <>
             <Navbar/>
             <Container>
-            <Outlet/>
+                <Outlet/>
             </Container>
             </>
 
