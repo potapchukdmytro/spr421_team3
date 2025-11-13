@@ -12,8 +12,8 @@ using Team_Job.DAL;
 namespace Team_Job.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251110235216_Seed")]
-    partial class Seed
+    [Migration("20251113182636_FIrst")]
+    partial class FIrst
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

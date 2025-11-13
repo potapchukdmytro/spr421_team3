@@ -60,7 +60,7 @@ namespace Team_Job.DAL.Initializer
                     AmountOfRooms = 3,
                     PricePerNight = 1200.50m,
                     IsAvialable = true,
-                    PosterUrl = "https://example.com/posters/house1.jpg",
+                    PosterUrl = "1.jfif",
                     Bookings = new List<BookingEntity>(),
                     Owner = user1,
                     OwnerId = user1.Id
@@ -72,7 +72,7 @@ namespace Team_Job.DAL.Initializer
                     AmountOfRooms = 2,
                     PricePerNight = 950m,
                     IsAvialable = false,
-                    PosterUrl = "https://example.com/posters/house2.jpg",
+                    PosterUrl = "2.jpg",
                     Bookings = new List<BookingEntity>(),
                     Owner = user2,
                     OwnerId = user2.Id
@@ -84,7 +84,7 @@ namespace Team_Job.DAL.Initializer
                     AmountOfRooms = 5,
                     PricePerNight = 2500m,
                     IsAvialable = true,
-                    PosterUrl = "https://example.com/posters/house3.jpg",
+                    PosterUrl = "3.jpg",
                     Bookings = null,
                     Owner = user3,
                     OwnerId = user3.Id
