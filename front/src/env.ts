@@ -1,3 +1,3 @@
-export const serverUrl = import.meta.env.VITE_SERVER_URL;
-export const apiUrl = serverUrl + "/api";
-export const imagesUrl = serverUrl + "/storage/images";
+
+export const apiUrl = import.meta.env.VITE_API_URL;
+export const fotoUrl = import.meta.env.VITE_FOTO_URL;

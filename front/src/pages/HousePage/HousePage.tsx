@@ -1,27 +1,97 @@
-import LinearProgress from "@mui/material/LinearProgress";
-import { useGetHousesQuery } from "../../store/services/houseApi";
+
+import { useGetHousesQuery } from "../../store/HouseAPI";
+import { fotoUrl} from '../../env';
+import './HousePage.css';
 import Box from "@mui/material/Box";
-import HouseCard from "../../components/cards/HouseCard";
-import type { House } from "./types";
-
-
+import { Link } from "react-router";
 const HousePage = () =>{
-    const { data, isLoading } = useGetHousesQuery(null);
 
-    return(
-        <>
-            {isLoading ? (
-                <LinearProgress color="secondary" />
-            ):(
-                <Box minHeight="200vh">
-                    {data?.payload.map((house: House) => (
-                        <HouseCard key={house.id} house={house} />
-                    ))}
-                </Box>
-            )}
-        </>
+const {data} = useGetHousesQuery(null)
 
-    );
+console.log(fotoUrl+"/"+data?.payload[0].posterUrl)
+type House = {
+  address: string;
+  amountOfRooms: number;
+  pricePerNight: number;
+  posterUrl: string;
+  isAvialable: boolean;
+  ownerId: string;
 };
     
+        return(
+            <>
+            
+            <Link
+      to={`/housebooking`}>
+            <div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",   
+    gap: "20px",           
+    justifyContent: "center",
+    
+
+  }}
+> {data?.payload.map((p: House,index:number)=>(
+      
+      
+        <Box  
+        
+          key={index}
+          sx={{
+        flex: "0 0 calc(50% - 10px)",
+        maxWidth: "calc(50% - 10px)",
+        display: "flex",
+        flexDirection: "column",
+        padding: "20px",
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+        gap: "16px",
+        alignItems: "flex-start",
+        marginBottom: "24px",
+        boxSizing: "border-box",
+        backgroundColor :"rgba(76, 71, 71, 0.1)",
+         transition: "transform 0.5s ease, box-shadow 0.5s ease",
+        "&:hover": {
+      transform: "scale(1.02)",
+      boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+    },
+                            
+          }}
+          
+        >
+          
+          {p.posterUrl && (
+            <img
+              src={fotoUrl+"/"+p.posterUrl}
+              alt={p.address}
+              style={{
+                width: "1050px",      
+                height: "600px",      
+                objectFit: "cover",   
+                borderRadius: "8px",
+              }}
+            />  
+          )}
+          <Box  sx={{
+            color:"white"
+          }}>
+            <h2 style={{ margin: "0 0 8px 0" }}>{p.address}</h2>
+            <p style={{ margin: "4px 0" }}>Кімнат: {p.amountOfRooms}</p>
+            <p style={{ margin: "4px 0" }}>Ціна за ніч: {p.pricePerNight} грн</p>
+          </Box>
+          
+        </Box>
+
+           ))}
+           
+          </div>
+           </Link> 
+            </>
+
+        )
+
+}
+
 export default HousePage;

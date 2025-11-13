@@ -1,13 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { houseApi } from "./services/houseApi";
-
+import { HousesApi } from "./HouseAPI";
 export const store = configureStore({
     reducer: {
-      [houseApi.reducerPath]: houseApi.reducer,
+      [HousesApi.reducerPath]: HousesApi.reducer
     },
     middleware: (getDefaultMiddleware) => 
-        getDefaultMiddleware()
-                .concat(houseApi.middleware),
+        getDefaultMiddleware().concat(HousesApi.middleware),
+
         
 });
 
