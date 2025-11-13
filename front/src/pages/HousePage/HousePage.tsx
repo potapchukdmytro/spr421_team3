@@ -1,3 +1,4 @@
+
 import { useGetHousesQuery } from "../../store/HouseAPI";
 import { fotoUrl} from '../../env';
 import './HousePage.css';
@@ -92,4 +93,5 @@ type House = {
         )
 
 }
+
 export default HousePage;
