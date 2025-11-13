@@ -201,10 +201,5 @@ namespace Team_Job.BLL.Services.House
 
 
 
-
-
-
-
-
     }
 }
