@@ -11,10 +11,19 @@ const  Houses : House = {
 };
 
 const HouseBooks = createSlice({
-    name: "house",
+    name: "home",
     initialState: Houses,
     reducers: {
-        housebookingget(state, action: PayloadAction<string>) {
+        housebookingget(state, action: PayloadAction<null>) {
+
+            },
+          houseset(state, action: PayloadAction<House>) {
+           state.address = action.payload.address;
+           state.amountOfRooms = action.payload.amountOfRooms;
+           state.pricePerNight = action.payload.pricePerNight;
+           state.posterUrl = action.payload.posterUrl;
+           state.isAvialable = action.payload.isAvialable;
+           state.ownerId = action.payload.ownerId;
            
             }
 
@@ -24,5 +33,5 @@ const HouseBooks = createSlice({
     
 });
 
-export const { housebookingget } = HouseBooks.actions;
+export const { housebookingget,houseset } = HouseBooks.actions;
 export default HouseBooks.reducer;

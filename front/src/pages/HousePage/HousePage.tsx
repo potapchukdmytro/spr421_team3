@@ -4,11 +4,14 @@ import { fotoUrl} from '../../env';
 import './HousePage.css';
 import Box from "@mui/material/Box";
 import { Link } from "react-router";
+import { useDispatch } from "react-redux";
+
+import { houseset} from '../../store/slices/houseSlice';
 const HousePage = () =>{
 
 const {data} = useGetHousesQuery(null)
+const dispatch = useDispatch();
 
-console.log(fotoUrl+"/"+data?.payload[0].posterUrl)
 type House = {
   address: string;
   amountOfRooms: number;
@@ -22,8 +25,11 @@ type House = {
             <>
             
             <Link
+           
       to={`/housebooking`}>
             <div
+
+          
   style={{
     display: "flex",
     flexWrap: "wrap",   
@@ -34,8 +40,10 @@ type House = {
   }}
 > {data?.payload.map((p: House,index:number)=>(
       
+
       
-        <Box  
+       
+        <Box    onClick={() => dispatch(houseset(p))}
         
           key={index}
           sx={{
