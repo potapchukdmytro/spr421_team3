@@ -3,7 +3,7 @@
     public class HouseDto
     {
         private bool isAvialable;
-
+        public string? Id { get; set; }
         public string? Address { get; set; }
         public int AmountOfRooms { get; set; }
         public decimal PricePerNight { get; set; }
