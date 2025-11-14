@@ -1,9 +1,4 @@
-
-import { Routes,Route } from 'react-router'
 import './App.css'
-import DefLayouts from './components/layouts/DefLayouts'
-import HousePage from './pages/HousePage/HousePage'
-import Housebooking from './pages/Housebooking/HouseBooking'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from './store/slices/authSlice'

@@ -75,8 +75,8 @@ type House = {
               src={fotoUrl+"/"+p.posterUrl}
               alt={p.address}
               style={{
-                width: "1050px",      
-                height: "600px",      
+                width: "100%",      
+                height: "100%",      
                 objectFit: "cover",   
                 borderRadius: "8px",
               }}
