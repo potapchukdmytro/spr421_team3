@@ -1,6 +1,6 @@
 import { useAppSelector  } from "../../hooks/hooks";
 import { fotoUrl} from '../../env';
-import CssBaseline from "@mui/material/CssBaseline";
+
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
@@ -10,6 +10,7 @@ import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { useCreateBookingMutation } from "../../store/services/bookingApi";
+import "./HouseBooking.css";
 
 const Housebooking = ()=> {
   const house = useAppSelector((state) => state.home);
@@ -42,28 +43,41 @@ const Housebooking = ()=> {
     };
 
   return(
-    <div className="flex items-center gap-6 p-6 rounded-2xl shadow-md **bg-black**">
-      
+    
+      <>
 
-      <img 
-        src={fotoUrl+"/" + house.posterUrl} 
-        
-      />
+<Box sx={{position: "relative",width: 1200, height: 810   }}>
+  <Box
+  component="img"
+  src={fotoUrl + "/" + house.posterUrl}
+  sx={{
+    width: "1200px",        
+    height: "830px",   
 
 
-      <div className="flex flex-col">
-        <h2 className="text-xl font-bold mb-2">{house.address}</h2>
-        <p className="text-gray-600">
-          Це короткий опис про фото: що це, чому важливо, які особливості,
-          або будь-яка інша інформація, яку ти хочеш показати.
-        </p>
-      </div>
 
-      <CssBaseline enableColorScheme />
-      <Card variant="outlined">
+    "&:hover": {
+      opacity: 0.8,    
+    },
+  }}
+/>
+</Box>
+
+
+<div>
+<Box sx={{ display: "flex", flexDirection: "column", marginLeft:"1400px",marginTop:"-330px", position: "absolute", }}>
+  <Typography variant="h6">{house.address}</Typography>
+  <Typography variant="h6">Кімнат: {house.amountOfRooms}</Typography>
+  <Typography variant="h6">Ціна за ніч: {house.pricePerNight}</Typography>
+</Box>
+</div>
+<Box sx={{  flexDirection: "column", marginLeft:"1400px",marginTop:"-210px",position: "absolute",}}>
+
+      <Card variant="outlined" sx={{ backgroundColor: "#31302F" ,color:"white"}} >
       <Typography
           component="h1"
           variant="h4"
+          color="white"
           sx={{
               width: "100%",
               fontSize: "clamp(2rem, 10vw, 2.15rem)",
@@ -77,14 +91,15 @@ const Housebooking = ()=> {
           sx={{
               display: "flex",
               flexDirection: "column",
+              color:"white",
               width: "100%",
               gap: 2,
           }}>
             <FormControl>
-                <FormLabel htmlFor="releaseDate">
+                <FormLabel htmlFor="releaseDate" sx={{color:"white"}}>
                     Дата до якої бронювати
                 </FormLabel>
-                <TextField
+                <TextField sx={{color:"white"}}
                     name="releaseDate"
                     type="date"
                     placeholder="Дата виходу"
@@ -92,6 +107,12 @@ const Housebooking = ()=> {
                     fullWidth
                     variant="outlined"
                     onChange={(e) => setRezevationDate(new Date(e.target.value))}
+                     InputProps={{
+                    sx: {
+                          color: "white", 
+                          "&::placeholder": { color: "lightgray" }, 
+                          },
+    }}
                 />
             </FormControl>
             <Button type="submit" fullWidth variant="contained">
@@ -99,8 +120,11 @@ const Housebooking = ()=> {
             </Button>
         </Box>
       </Card>
+</Box>
+      
 
-    </div>
+
+    </>
   )     
 }
     
