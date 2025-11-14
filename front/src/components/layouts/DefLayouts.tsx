@@ -1,4 +1,5 @@
 
+import Container from "@mui/material/Container";
 import Navbar from "../navbar/Navbar";
 import { Outlet } from "react-router";
 const DefLayouts = () =>
@@ -6,9 +7,9 @@ const DefLayouts = () =>
         return(
             <>
             <Navbar/>
-
+            <Container>
                 <Outlet />
-
+            </Container>
             </>
 
         )

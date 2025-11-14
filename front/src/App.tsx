@@ -4,18 +4,25 @@ import './App.css'
 import DefLayouts from './components/layouts/DefLayouts'
 import HousePage from './pages/HousePage/HousePage'
 import Housebooking from './pages/Housebooking/HouseBooking'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { login } from './store/slices/authSlice'
+import DefaultRoutes from './DefaultRoutes'
 
 function App() {
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            dispatch(login(token));
+        }
+    }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path ="/" element={<DefLayouts/>}>
-      <Route index element={<HousePage/>}></Route>
-      <Route path ="/housebooking" element={<Housebooking/>}></Route>
-      </Route>
-
-    </Routes>
+    <>
+      <DefaultRoutes />
+    </>
   )
 }
 

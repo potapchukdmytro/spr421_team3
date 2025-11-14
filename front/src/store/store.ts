@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { HousesApi } from "./HouseAPI";
 import houseslice from "../store/slices/houseSlice";
+import authReducer from "./slices/authSlice";
+
 export const store = configureStore({
     reducer: {
+      auth: authReducer,
       [HousesApi.reducerPath]: HousesApi.reducer,
       home : houseslice,
 

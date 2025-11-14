@@ -1,8 +1,10 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Team_Job.BLL.Services.Auth;
 using Team_Job.BLL.Services.House;
 using Team_Job.BLL.Services.Storage;
+using Team_Job.BLL.Settings;
 using Team_Job.DAL;
 using Team_Job.DAL.Entities.Identity;
 using Team_Job.DAL.Initializer;
@@ -61,6 +63,9 @@ builder.Services.AddScoped<IStorageService, StorageService>();
 
 builder.Services.AddScoped<IHouseService, HouseService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
