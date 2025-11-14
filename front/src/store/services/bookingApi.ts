@@ -10,7 +10,7 @@ export const bookingApi = createApi({
         }
     }),
     tagTypes: ['booking'],
-    reducerPath: 'house',
+    reducerPath: 'booking',
     endpoints: (build) => ({
         createBooking: build.mutation<ServiceResponse, FormData>({
             query: (formData) => ({
