@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Team_Job.BLL.Services.Auth;
+using Team_Job.BLL.Services.Booking;
 using Team_Job.BLL.Services.House;
 using Team_Job.BLL.Services.Storage;
 using Team_Job.BLL.Settings;
@@ -56,7 +57,7 @@ builder.Services.AddAutoMapper(options =>
 }, AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<IHouseRepository, HouseRepository>();
-builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+//builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddScoped<IStorageService, StorageService>();
@@ -64,6 +65,7 @@ builder.Services.AddScoped<IStorageService, StorageService>();
 builder.Services.AddScoped<IHouseService, HouseService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
