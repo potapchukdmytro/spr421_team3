@@ -1,13 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>front</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <title>CSS Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0077cc;
+            --primary-dark: #005fa3;
+            --bg: #f5f7fa;
+            --text: #222;
+            --card-bg: #fff;
+            --border: #dcdfe3;
+            --shadow: 0 4px 14px rgba(0,0,0,0.06);
+            --radius: 8px;
+            --transition: .25s ease;
+        }
+
+        body {
+            font-family: "Segoe UI",Tahoma,sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: .7rem 1.3rem;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+            button:hover {
+                background: var(--primary-dark);
+                transform: translateY(-2px);
+            }
+
+        input {
+            width: 100%;
+            padding: .8rem;
+            font-size: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+            input:focus {
+                border-color: var(--primary);
+                outline: none;
+                box-shadow: 0 0 4px var(--primary);
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        th {
+            background: var(--primary);
+            color: #fff;
+            padding: .75rem;
+            text-align: left;
+        }
+
+        td {
+            padding: .75rem;
+            border-top: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: rgba(0,0,0,0.03);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Preview of Updated index.css</h1>
+
+        <div class="card fade-in">
+            <h2>Card Component</h2>
+            <p>This is how a card looks with the updated styling.</p>
+            <button>Click me</button>
+        </div>
+
+        <div class="card fade-in">
+            <h2>Form Example</h2>
+            <input type="text" placeholder="Enter text..." />
+            <button>Submit</button>
+        </div>
+
+        <div class="card fade-in">
+            <h2>Table Example</h2>
+            <table>
+                <tr><th>Name</th><th>Age</th></tr>
+                <tr><td>John</td><td>25</td></tr>
+                <tr><td>Anna</td><td>30</td></tr>
+            </table>
+        </div>
+
+    </div>
+</body>
 </html>
