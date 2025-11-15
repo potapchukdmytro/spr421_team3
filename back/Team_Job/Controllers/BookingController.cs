@@ -18,7 +18,7 @@ namespace Team_Job.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] CreateBookingDto dto)
+        public async Task<IActionResult> CreateAsync([FromForm] CreateBookingDto dto)
         {
             var response = await _BookingService.CreateBookingAsync(dto);
             return this.ToActionResult(response);

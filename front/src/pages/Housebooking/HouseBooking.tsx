@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useCreateBookingMutation } from "../../store/services/bookingApi";
 
 const Housebooking = ()=> {
@@ -28,7 +28,9 @@ const Housebooking = ()=> {
         return diffDays * pricePerNight;
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+
         const formData = new FormData();
 
         formData.append("houseId", house.ownerId);
