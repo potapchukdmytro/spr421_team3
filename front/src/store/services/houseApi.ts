@@ -18,8 +18,16 @@ export const houseApi = createApi({
                 method: 'get'
             }),
             providesTags: ['house']
+        }),
+        createHouse: build.mutation<ServiceResponse, FormData>({
+            query: (formData) => ({
+                url: 'house',
+                method: 'post',
+                body: formData
+            }),
+            invalidatesTags: ['house']
         })
     })
 });
 
-export const { useGetHousesQuery } = houseApi;
+export const { useGetHousesQuery, useCreateHouseMutation } = houseApi;
