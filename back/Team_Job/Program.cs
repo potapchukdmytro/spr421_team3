@@ -106,4 +106,6 @@ app.MapControllers();
 app.UseCors(corsPolicy);
 app.Seed();
 
+app.Seed();
+
 app.Run();

@@ -16,8 +16,6 @@ namespace Team_Job.DAL.Entities
 
         public string? PosterUrl { get; set; }
         public List<BookingEntity>? Bookings { get; set; }
-
-
         public required UserEntity? Owner { get; set; }
 
         public required string OwnerId { get; set; }
