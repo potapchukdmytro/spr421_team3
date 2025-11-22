@@ -2,7 +2,7 @@
 
 namespace Team_Job.BLL.Services.Booking
 {
-    public interface IBookingServices
+    public interface IBookingService
     {
         Task<ServiceResponse> CreateBookingAsync(CreateBookingDto createBookingDto);
 
@@ -14,7 +14,15 @@ namespace Team_Job.BLL.Services.Booking
 
         Task<ServiceResponse> GetAllAsync();
 
-       
+        Task<ServiceResponse> ReserveAsync(CreateBookingDto createBookingDto);
+
+        Task<ServiceResponse> FilterBookingsAsync(
+            string? userId = null,
+            string? houseId = null,
+            DateTime? from = null,
+            DateTime? to = null
+            );
+
 
 
 

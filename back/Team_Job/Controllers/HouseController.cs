@@ -16,9 +16,11 @@ namespace Team_Job.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] CreateHouseDto dto)
+        public async Task<IActionResult> CreateAsync([FromForm] CreateHouseDto dto )
         {
-            var response = await _HouseServices.CreateAsync(dto);
+            var rootPath = Directory.GetCurrentDirectory();
+            var imagesPath = Path.Combine(rootPath, "storage", "images");
+            var response = await _HouseServices.CreateAsync(dto, imagesPath);
             return this.ToActionResult(response);
         }
 

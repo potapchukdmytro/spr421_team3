@@ -1,13 +1,18 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Team_Job.BLL.Services.Auth;
+using Team_Job.BLL.Services.Booking;
 using Team_Job.BLL.Services.House;
+using Team_Job.BLL.Services.Storage;
+using Team_Job.BLL.Settings;
 using Team_Job.DAL;
 using Team_Job.DAL.Entities.Identity;
 using Team_Job.DAL.Initializer;
 using Team_Job.DAL.Repositories.Booking;
 using Team_Job.DAL.Repositories.House;
 using Team_Job.DAL.Repositories.User;
+using Team_Job.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -52,16 +57,35 @@ builder.Services.AddAutoMapper(options =>
 }, AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<IHouseRepository, HouseRepository>();
-builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+//builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+builder.Services.AddScoped<IStorageService, StorageService>();
 
 builder.Services.AddScoped<IHouseService, HouseService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+string corsPolicy = "allowall";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(corsPolicy, builder =>
+    {
+        builder
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
+
 
 var app = builder.Build();
 
@@ -76,7 +100,11 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.AddStaticFiles(app.Environment);
+
 app.MapControllers();
+app.UseCors(corsPolicy);
+app.Seed();
 
 app.Seed();
 
